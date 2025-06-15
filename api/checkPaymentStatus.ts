@@ -5,7 +5,8 @@ import { VercelRequest, VercelResponse } from "@vercel/node";
 const MERCADO_PAGO_ACCESS_TOKEN = process.env.MERCADO_PAGO_ACCESS_TOKEN;
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-  enableCors(res);
+  enableCors(res, req);
+
   if (req.method !== "GET") {
     res.status(405).json({ error: "Método não permitido" });
     return;
