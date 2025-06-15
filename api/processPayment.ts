@@ -1,6 +1,5 @@
-// api/processPayment.js
-
 import axios from "axios";
+import enableCors from "../shared/enableCors";
 
 const MERCADO_PAGO_ACCESS_TOKEN = process.env.MERCADO_PAGO_ACCESS_TOKEN;
 
