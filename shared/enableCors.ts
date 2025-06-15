@@ -15,4 +15,10 @@ export default function enableCors(res: VercelResponse, req: VercelRequest) {
   res.setHeader("Access-Control-Allow-Origin", "http://localhost:5173");
   res.setHeader("Access-Control-Allow-Methods", "GET,POST,OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+
+  if (req.method === "OPTIONS") {
+    // ❗ Handle preflight immediately
+    res.status(200).end();
+    return;
+  }
 }
