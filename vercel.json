@@ -1,9 +1,10 @@
 {
+  "version": 2,
   "routes": [
     {
-      "src": "/api/createPreference",
-      "methods": ["GET", "POST", "OPTIONS"],
-      "dest": "/api/createPreference.ts"
+      "src": "/api/(.*)",
+      "methods": ["OPTIONS", "GET", "POST"],
+      "dest": "/api/$1"
     }
   ]
 }
