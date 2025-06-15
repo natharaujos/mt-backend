@@ -14,16 +14,16 @@ export default function enableCors(
 
   if (allowedOrigins.includes(origin)) {
     res.setHeader("Access-Control-Allow-Origin", origin);
+    res.setHeader("Access-Control-Allow-Credentials", "true");
   }
 
   res.setHeader("Access-Control-Allow-Methods", "GET,POST,OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
 
   if (req.method === "OPTIONS") {
-    // Handle preflight immediately
     res.status(200).end();
-    return true; // indicates response ended
+    return true; // Preflight handled
   }
 
-  return false;
+  return false; // Continue with main handler
 }
