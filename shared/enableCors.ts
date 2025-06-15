@@ -10,6 +10,8 @@ export default function enableCors(
     "http://127.0.0.1:5173",
   ];
 
+  console.log("Request Origin:", req.headers.origin);
+
   const origin = (req.headers.origin || "").toLowerCase();
 
   if (allowedOrigins.some((o) => o.toLowerCase() === origin)) {
