@@ -3,6 +3,7 @@ import axios from "axios";
 const MERCADO_PAGO_ACCESS_TOKEN = process.env.MERCADO_PAGO_ACCESS_TOKEN;
 
 export default async function handler(req, res) {
+  enableCors(req);
   if (req.method !== "GET") {
     res.status(405).json({ error: "Método não permitido" });
     return;
