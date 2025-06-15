@@ -29,6 +29,13 @@ interface PreferenceRequestBody {
   back_urls: BackUrls;
 }
 
+export const config = {
+  api: {
+    bodyParser: true,
+    methods: ["POST", "OPTIONS"],
+  },
+};
+
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   const preflightHandled = enableCors(res, req);
   if (preflightHandled) {
