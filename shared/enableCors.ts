@@ -1,4 +1,6 @@
-export default function enableCors(res: any) {
+import { VercelResponse } from "@vercel/node";
+
+export default function enableCors(res: VercelResponse) {
   res.setHeader(
     "Access-Control-Allow-Origin",
     "https://maguinha-frontend.vercel.app"

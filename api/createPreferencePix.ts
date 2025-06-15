@@ -1,5 +1,6 @@
 import axios from "axios";
 import enableCors from "../shared/enableCors";
+import { VercelRequest, VercelResponse } from "@vercel/node";
 
 const MERCADO_PAGO_ACCESS_TOKEN = process.env.MERCADO_PAGO_ACCESS_TOKEN;
 
@@ -28,8 +29,8 @@ interface PreferenceRequestBody {
   back_urls: BackUrls;
 }
 
-export default async function handler(req, res) {
-  enableCors(req);
+export default async function handler(req: VercelRequest, res: VercelResponse) {
+  enableCors(res);
   if (req.method !== "POST") {
     res.status(405).json({ error: "Método não permitido" });
     return;
