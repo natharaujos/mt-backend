@@ -1,6 +1,9 @@
 import { VercelRequest, VercelResponse } from "@vercel/node";
 
-export default function enableCors(res: VercelResponse, req: VercelRequest) {
+export default function enableCors(
+  res: VercelResponse,
+  req: VercelRequest
+): boolean {
   const allowedOrigins = [
     "https://maguinha-frontend.vercel.app",
     "http://localhost:5173",
@@ -16,8 +19,10 @@ export default function enableCors(res: VercelResponse, req: VercelRequest) {
   res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
 
   if (req.method === "OPTIONS") {
-    // ❗ Handle preflight immediately
+    // Handle preflight immediately
     res.status(200).end();
-    return;
+    return true; // indicates response ended
   }
+
+  return false;
 }
