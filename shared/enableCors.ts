@@ -10,9 +10,9 @@ export default function enableCors(
     "http://127.0.0.1:5173",
   ];
 
-  const origin = req.headers.origin || "";
+  const origin = (req.headers.origin || "").toLowerCase();
 
-  if (allowedOrigins.includes(origin)) {
+  if (allowedOrigins.some((o) => o.toLowerCase() === origin)) {
     res.setHeader("Access-Control-Allow-Origin", origin);
     res.setHeader("Access-Control-Allow-Credentials", "true");
   }
