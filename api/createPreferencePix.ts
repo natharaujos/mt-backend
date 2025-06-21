@@ -57,15 +57,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         items: body.items,
         payer: body.payer,
         payment_methods: {
-          excluded_payment_types: [
-            { id: 'credit_card' },
-            { id: 'debit_card' },
-            { id: 'ticket' },
-            { id: 'atm' },
-          ],
-          excluded_payment_methods: [
-            { id: 'account_money' }, // Excluir saldo Mercado Pago, por exemplo
-          ],
+          excluded_payment_types: [{ id: 'ticket' }, { id: 'atm' }],
         },
         binary_mode: true,
         back_urls: {
