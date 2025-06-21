@@ -39,7 +39,6 @@ export const config = {
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   const preflightHandled = enableCors(res, req)
   if (preflightHandled) {
-    // OPTIONS request ended here, just return early
     return
   }
 
@@ -58,7 +57,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         items: body.items,
         payer: body.payer,
         payment_methods: {
-          excluded_payment_types: [{ id: 'credit_card' }, { id: 'debit_card' }, { id: 'ticket' }],
+          excluded_payment_types: [
+            { id: 'credit_card' },
+            { id: 'debit_card' },
+            { id: 'ticket' },
+            { id: 'atm' },
+          ],
+          // não defina default_payment_method_id para evitar conflito
         },
         binary_mode: true,
       },
@@ -70,12 +75,16 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       }
     )
 
-    console.log('Preference created successfully:', response.data)
+    // Retorna só os dados do QR Code PIX e init_point para redirecionamento
+    const { point_of_interaction, init_point } = response.data
 
-    res.status(200).json(response.data)
+    res.status(200).json({
+      qr_code: point_of_interaction?.transaction_data?.qr_code || null,
+      qr_code_base64: point_of_interaction?.transaction_data?.qr_code_base64 || null,
+      init_point,
+    })
   } catch (error: any) {
     console.error(error.response?.data || error.message)
-    console.error('Token', MERCADO_PAGO_ACCESS_TOKEN)
     res.status(500).json({ error: 'Erro ao criar preferência PIX' })
   }
 }
