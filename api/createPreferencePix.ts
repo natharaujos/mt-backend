@@ -72,6 +72,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       }
     )
 
+    console.log('Preference created successfully:', response.data)
+
     res.status(200).json(response.data)
   } catch (error: any) {
     console.error(error.response?.data || error.message)
