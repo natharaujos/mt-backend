@@ -66,6 +66,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           // não defina default_payment_method_id para evitar conflito
         },
         binary_mode: true,
+        back_urls: {
+          success: `https://maguinhatuquinho.web.app/payment/${body.external_reference}?payment_id={payment_id}&payment_status={status}`,
+          failure: `https://maguinhatuquinho.web.app/payment/${body.external_reference}?payment_id={payment_id}&payment_status={status}`,
+          pending: `https://maguinhatuquinho.web.app/payment/${body.external_reference}?payment_id={payment_id}&payment_status={status}`,
+        },
+        auto_return: 'all',
       },
       {
         headers: {
