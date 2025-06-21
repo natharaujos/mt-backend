@@ -59,7 +59,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         payer: body.payer,
         payment_methods: {
           excluded_payment_types: [{ id: 'credit_card' }, { id: 'debit_card' }, { id: 'ticket' }],
-          default_payment_method_id: 'pix',
         },
         binary_mode: true,
       },
