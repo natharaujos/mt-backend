@@ -61,9 +61,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         },
         binary_mode: true,
         back_urls: {
-          success: `http://localhost:5173/payment/${body.external_reference}`,
-          failure: `http://localhost:5173/payment/${body.external_reference}`,
-          pending: `http://localhost:5173/payment/${body.external_reference}`,
+          success: `https://maguinhatuquinho.web.app/payment/${body.external_reference}`,
+          failure: `https://maguinhatuquinho.web.app/payment/${body.external_reference}`,
+          pending: `https://maguinhatuquinho.web.app/payment/${body.external_reference}`,
         },
         auto_return: "all",
       },
