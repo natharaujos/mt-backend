@@ -44,7 +44,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     );
 
     console.log(`Payment status response: ${JSON.stringify(response.data)}`);
-    res.status(200).json(response.data);
+    res.status(200).json(response.data.status);
   } catch (error: any) {
     console.error(error.response?.data || error.message);
     res.status(500).json({ error: "Erro ao consultar pagamento" });
