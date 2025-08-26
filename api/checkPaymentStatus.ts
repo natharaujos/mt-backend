@@ -26,6 +26,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
+    console.log(`Checking payment status for ID: ${paymentId}`); // Add this
     const response = await axios.get(
       `https://api.mercadopago.com/v1/payments/${paymentId}`,
       {
@@ -35,6 +36,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       }
     );
 
+    console.log(`Payment status response: ${JSON.stringify(response.data)}`);
     res.status(200).json(response.data);
   } catch (error: any) {
     console.error(error.response?.data || error.message);
