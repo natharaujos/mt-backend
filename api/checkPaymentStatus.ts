@@ -4,6 +4,13 @@ import { VercelRequest, VercelResponse } from "@vercel/node";
 
 const MERCADO_PAGO_ACCESS_TOKEN = process.env.MERCADO_PAGO_ACCESS_TOKEN;
 
+export const config = {
+  api: {
+    bodyParser: true,
+    methods: ["GET", "OPTIONS"],
+  },
+};
+
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   const preflightHandled = enableCors(res, req);
   if (preflightHandled) {
