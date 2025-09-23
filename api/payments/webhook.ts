@@ -21,6 +21,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     );
 
     const payment = response.data;
+
+    console.log("MP payment details", response.data);
+
     const externalRef = payment.external_reference;
 
     // 2. atualiza Firestore
