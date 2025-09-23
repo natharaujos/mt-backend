@@ -1,8 +1,8 @@
 import { VercelRequest, VercelResponse } from "@vercel/node";
 
 export default function enableCors(
-  res: VercelResponse,
-  req: VercelRequest
+  req: VercelRequest,
+  res: VercelResponse
 ): boolean {
   const allowedOrigins = [
     "https://maguinhatuquinho.web.app",

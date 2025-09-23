@@ -1,11 +1,11 @@
 import axios from "axios";
-import enableCors from "../shared/enableCors";
+import enableCors from "../../shared/enableCors";
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 
 const MERCADO_PAGO_ACCESS_TOKEN = process.env.MERCADO_PAGO_ACCESS_TOKEN;
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-  const preflightHandled = enableCors(res, req);
+  const preflightHandled = enableCors(req, res);
   if (preflightHandled) {
     // OPTIONS request ended here, just return early
     return;
