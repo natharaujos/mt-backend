@@ -9,6 +9,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
+    console.log("Creating payment with data:", req.body);
     const result = await createPayment(req.body);
     return res.status(200).json(result);
   } catch (err: any) {
