@@ -6,6 +6,7 @@ export async function createPayment(data: any) {
   const response = await axios.post(
     "https://api.mercadopago.com/checkout/preferences",
     {
+      external_reference: data.external_reference,
       items: data.items,
       payer: data.payer,
       payment_methods: {
